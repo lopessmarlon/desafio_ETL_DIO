@@ -11,11 +11,11 @@ import openai
 # Configuração do Spark
 spark = SparkSession.builder.appName("Pipeline IA GEN").getOrCreate()
 
-# Conexões e chaves de API (mova isso para variáveis de ambiente ou configuração externa)
+# Conexões e chaves de API 
 openai_api_key = "your_openai_api_key"
 sdw2023_api_url = "https://sdw-2023-prd.up.railway.app"
 
-# Esquema do DataFrame
+# Schema do DataFrame
 arqSchema = "UserID INT"
 df_sdw_desafio = spark.read.csv(
     "C:/Users/marlo/Downloads/santander_dev_week_2023.csv",
@@ -34,7 +34,7 @@ def get_user(id):
         print(f"Erro ao buscar usuário {id}: {e}")
         return None
 
-# Busca os usuários de forma paralela
+# Busca os usuários
 users = [user for id in user_ids if (user := get_user(id)) is not None]
 
 # Função para gerar notícias com base em AI
